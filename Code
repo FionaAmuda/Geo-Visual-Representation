@@ -19,3 +19,22 @@ plt.ylabel("Latitude")
 plt.title("Geographical Visualization of California Housing Data")
 
 plt.show()
+
+#Method 2
+#Import Modules
+
+import folium
+from folium.plugins import MarkerCluster
+
+#Createing a map, centered at the mean average location 
+map = folium.Map(location=[df['latitude'].mean(), df['longitude'].mean()], zoom_start=6)
+marker_cluster = MarkerCluster().add_to(map)
+
+#Now that you have the map add points
+for idx, row in df.iterrows():
+    folium.Marker([row['latitude'], row['longitude']],
+                  popup=f"House Value: ${row['median_house_value']}"
+                 ).add_to(marker_cluster)
+
+#Display the map
+map
