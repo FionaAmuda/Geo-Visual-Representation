@@ -1,0 +1,21 @@
+#Method 1
+#Imoprt the modules
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+#Run your data
+df = pd.read_csv("/content/sample_data/california_housing_train.csv")
+
+#You can use any dimentions to set your diagram size
+plt.figure(figsize=(10, 8))
+
+#Using seaborn plot a scatter graph
+sns.scatterplot(data=df, x='longitude', y='latitude', hue='median_house_value', palette='coolwarm', edgecolor='k', alpha=0.7)
+
+#It's Important to add the lables
+plt.xlabel("Longitude")
+plt.ylabel("Latitude")
+plt.title("Geographical Visualization of California Housing Data")
+
+plt.show()
